@@ -1,0 +1,167 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Contact API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/contacts": {
+            "post": {
+                "description": "Create contact",
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create new contact",
+                    "content": {
+                        "aplication/json": {
+                            "examples": {
+                                "create_contact": {
+                                    "description": "Create contact miftaqul",
+                                    "value": {
+                                        "first_name": "Miftaqul",
+                                        "last_name": "Fiqi Firmansyah",
+                                        "email": "miftaqul@example.com",
+                                        "phone": "08123456789"
+                                    }
+                                }
+                            },
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "phone"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success create contact",
+                        "content": {
+                            "aplication/json": {
+                                "examples": {
+                                    "create_contact": {
+                                        "description": "Create contact miftaqul",
+                                        "value": {
+                                            "data": {
+                                                "first_name": "Miftaqul",
+                                                "last_name": "Fiqi Firmansyah",
+                                                "email": "miftaqul@example.com",
+                                                "phone": "08123456789"
+                                            }
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "first_name": {
+                                                    "type": "string"
+                                                },
+                                                "last_name": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "phone": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Search contacts",
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/contacts/{id}": {
+            "put": {
+                "description": "Update contact",
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ]
+            },
+            "get": {
+                "description": "Get contact",
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ]
+            },
+            "delete": {
+                "description": "Delete contact",
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ]
+            }
+        }
+    }
+}
