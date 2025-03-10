@@ -120,9 +120,79 @@
                         },
                         "name": "Authorization",
                         "in": "header"
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "email",
+                        "in": "query"
+                    },
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "phone",
+                        "in": "query"
+                    },
+                    {
+                        "schema": {
+                            "type": "number"
+                        },
+                        "name": "page",
+                        "in": "query"
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "Success search contacts",
+                        "content": {
+                            "aplication/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number"
+                                                    },
+                                                    "first_name": {
+                                                        "type": "string"
+                                                    },
+                                                    "last_name": {
+                                                        "type": "string"
+                                                    },
+                                                    "email": {
+                                                        "type": "string"
+                                                    },
+                                                    "phone": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        },
+                                        "meta": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/api/contacts/{id}": {
@@ -135,8 +205,101 @@
                         },
                         "name": "Authorization",
                         "in": "header"
+                    },
+                    {
+                        "schema": {
+                            "type": "number"
+                        },
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
-                ]
+                ],
+                "requestBody": {
+                    "description": "Update contact",
+                    "content": {
+                        "aplication/json": {
+                            "examples": {
+                                "create_contact": {
+                                    "description": "Update contact miftaqul",
+                                    "value": {
+                                        "first_name": "Miftaqul",
+                                        "last_name": "Fiqi Firmansyah Updated",
+                                        "email": "miftaqul@example.com",
+                                        "phone": "08123456789"
+                                    }
+                                }
+                            },
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success get contacts",
+                        "content": {
+                            "aplication/json": {
+                                "examples": {
+                                    "search_contacts": {
+                                        "description": "get contacts id 1",
+                                        "value": {
+                                            "data": [
+                                                {
+                                                    "id": "1",
+                                                    "first_name": "Miftaqul",
+                                                    "last_name": "Fiqi Firmansyah",
+                                                    "email": "miftaqul@example.com",
+                                                    "phone": "08123456789"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "first_name": {
+                                                    "type": "string"
+                                                },
+                                                "last_name": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "phone": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "get": {
                 "description": "Get contact",
@@ -147,8 +310,66 @@
                         },
                         "name": "Authorization",
                         "in": "header"
+                    },
+                    {
+                        "schema": {
+                            "type": "number"
+                        },
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get contacts",
+                        "content": {
+                            "aplication/json": {
+                                "examples": {
+                                    "search_contacts": {
+                                        "description": "get contacts id 1",
+                                        "value": {
+                                            "data": [
+                                                {
+                                                    "id": "1",
+                                                    "first_name": "Miftaqul",
+                                                    "last_name": "Fiqi Firmansyah",
+                                                    "email": "miftaqul@example.com",
+                                                    "phone": "08123456789"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "first_name": {
+                                                    "type": "string"
+                                                },
+                                                "last_name": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "phone": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "delete": {
                 "description": "Delete contact",
@@ -159,8 +380,41 @@
                         },
                         "name": "Authorization",
                         "in": "header"
+                    },
+                    {
+                        "schema": {
+                            "type": "number"
+                        },
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success delete contacts",
+                        "content": {
+                            "aplication/json": {
+                                "examples": {
+                                    "search_contacts": {
+                                        "description": "get delete id 1",
+                                        "value": {
+                                            "data": [true]
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
